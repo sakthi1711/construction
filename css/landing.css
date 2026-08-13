@@ -1,0 +1,215 @@
+/* =========================================================
+   landing.css — hero, house grid, customizer, auth modal
+========================================================= */
+
+/* ---------------------------------------------------------
+   HERO
+--------------------------------------------------------- */
+
+.hero{
+  position:relative;
+  min-height:660px;
+  background:
+    linear-gradient(100deg, rgba(8,12,10,.95) 20%, rgba(8,12,10,.55) 75%),
+    url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85")
+    center/cover;
+  color:#fff;
+  padding:110px 7% 90px;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+}
+
+/* blueprint grid overlay — the signature texture */
+.hero::before{
+  content:'';
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(183,214,106,.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(183,214,106,.10) 1px, transparent 1px);
+  background-size:46px 46px;
+  mask-image: linear-gradient(to bottom, transparent, black 15%, black 60%, transparent);
+  pointer-events:none;
+}
+
+.hero-content{ max-width:660px; position:relative; z-index:1; }
+
+.hero-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:var(--brand);
+  letter-spacing:2px;
+  font-size:12px;
+  font-weight:700;
+  font-family:var(--mono);
+  margin-bottom:22px;
+  text-transform:uppercase;
+}
+.hero-tag::before{ content:''; width:20px; height:1px; background:var(--brand); }
+
+.hero h1{
+  font-family:var(--display);
+  font-size:clamp(44px, 6.4vw, 80px);
+  line-height:1.02;
+  font-weight:600;
+  margin-bottom:24px;
+  letter-spacing:-.5px;
+}
+.hero h1 em{ color:var(--brand); font-style:normal; }
+
+.hero p{
+  color:#d3dad4;
+  font-size:18px;
+  line-height:1.7;
+  max-width:540px;
+}
+
+.hero-buttons{ display:flex; gap:14px; margin-top:36px; flex-wrap:wrap; }
+
+.hero-stats{
+  display:flex;
+  gap:36px;
+  margin-top:54px;
+  padding-top:26px;
+  border-top:1px solid rgba(255,255,255,.15);
+}
+.hero-stats div strong{
+  display:block;
+  font-family:var(--display);
+  font-size:28px;
+  color:var(--brand);
+}
+.hero-stats div span{ font-size:12px; color:#9aa79e; font-family:var(--mono); }
+
+/* ---------------------------------------------------------
+   SECTION SHELL
+--------------------------------------------------------- */
+
+.section{ padding:90px 7%; }
+.section.tight{ padding-top:50px; }
+
+.section-title{ margin-bottom:40px; max-width:640px; }
+.section-title .eyebrow{ display:block; margin-bottom:10px; }
+.section-title h2{
+  font-family:var(--display);
+  font-size:clamp(30px,4vw,44px);
+  font-weight:600;
+  letter-spacing:-.5px;
+}
+.section-title p{ color:var(--ink-45); margin-top:12px; font-size:16px; }
+
+/* ---------------------------------------------------------
+   HOW IT WORKS
+--------------------------------------------------------- */
+
+.how-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0;
+}
+.how-step{
+  padding:26px 22px 26px 0;
+  border-top:2px solid var(--ink);
+  position:relative;
+}
+.how-step .num{
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--brand-deep);
+  font-weight:700;
+}
+.how-step h4{ font-family:var(--display); font-size:19px; margin:10px 0 8px; font-weight:600; }
+.how-step p{ color:var(--ink-45); font-size:14px; line-height:1.6; }
+
+/* ---------------------------------------------------------
+   HOUSE GRID
+--------------------------------------------------------- */
+
+.house-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+
+.house-card{
+  background:#fff;
+  border-radius:var(--radius-l);
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  transition:.3s ease;
+  border:1px solid rgba(13,19,16,.04);
+}
+.house-card:hover{ transform:translateY(-6px); box-shadow:0 30px 60px rgba(13,19,16,.14); }
+
+.house-image{ height:220px; background-size:cover; background-position:center; position:relative; }
+.house-image .badge{
+  position:absolute; top:14px; left:14px;
+  background:rgba(13,19,16,.85);
+  color:var(--brand);
+  font-family:var(--mono);
+  font-size:11px;
+  font-weight:700;
+  padding:6px 11px;
+  border-radius:20px;
+  letter-spacing:.4px;
+}
+
+.house-info{ padding:22px; }
+.house-info h3{ font-family:var(--display); font-size:21px; font-weight:600; }
+.house-info p{ color:var(--ink-45); margin:8px 0 16px; font-size:14px; }
+
+/* ---------------------------------------------------------
+   CUSTOMIZER
+--------------------------------------------------------- */
+
+.customizer{ display:grid; grid-template-columns:1fr 360px; gap:26px; align-items:start; }
+
+.options{ display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+
+.option{
+  padding:16px;
+  border:1.5px solid var(--line);
+  border-radius:13px;
+  cursor:pointer;
+  transition:.15s;
+  font-weight:600;
+  font-size:14px;
+}
+.option:hover{ border-color:var(--brand); }
+.option.selected{ border:2px solid var(--brand-deep); background:var(--brand-glow); }
+.option small{ display:block; color:var(--ink-45); font-weight:500; margin-top:4px; font-family:var(--mono); font-size:12px; }
+
+.price-box{
+  background:var(--ink);
+  color:#fff;
+  padding:30px;
+  border-radius:var(--radius-l);
+  position:sticky;
+  top:100px;
+}
+.price-box h3{ color:#9aa79e; font-size:12px; font-family:var(--mono); letter-spacing:1px; text-transform:uppercase; }
+.total-price{ font-family:var(--display); font-size:38px; color:var(--brand); margin:14px 0; font-weight:600; }
+.price-box .note{ color:#9aa79e; line-height:1.6; font-size:13px; }
+.price-breakdown{ margin:18px 0; padding:16px 0; border-top:1px solid rgba(255,255,255,.12); border-bottom:1px solid rgba(255,255,255,.12); }
+.price-breakdown div{ display:flex; justify-content:space-between; font-size:13px; color:#c7cec9; padding:5px 0; }
+.price-breakdown div span:last-child{ font-family:var(--mono); }
+
+/* ---------------------------------------------------------
+   AUTH MODAL
+--------------------------------------------------------- */
+
+.auth-tabs{ display:flex; gap:6px; background:var(--paper-dim); padding:5px; border-radius:11px; margin-bottom:22px; }
+.auth-tab{ flex:1; padding:10px; border-radius:8px; font-weight:700; font-size:13px; text-align:center; color:var(--ink-45); }
+.auth-tab.active{ background:#fff; color:var(--ink); box-shadow:0 3px 10px rgba(13,19,16,.08); }
+
+.role-toggle{ display:flex; gap:10px; margin-bottom:18px; }
+.role-toggle .option{ flex:1; text-align:center; padding:12px; }
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+--------------------------------------------------------- */
+
+@media(max-width:900px){
+  .house-grid, .customizer, .how-grid{ grid-template-columns:1fr; }
+  .hero{ padding:80px 6% 60px; }
+  .hero-stats{ flex-wrap:wrap; gap:24px; }
+  .price-box{ position:static; }
+  .how-step{ border-top:none; border-left:2px solid var(--ink); padding:14px 0 14px 20px; }
+}
