@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Project | BuildTrack</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar">
+  <div class="logo">
+    <div class="logo-icon">A</div>
+    AARTI <small>CONSTRUCTION</small>
+  </div>
+
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="customer.html" class="active">My Project</a>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:10px;">
+    <div class="user-pill" id="userPill">Loading…</div>
+    <button class="btn btn-soft btn-sm" id="logoutBtn">Log Out</button>
+  </div>
+</nav>
+
+<div class="dash">
+
+  <div class="dash-header">
+    <div>
+      <small class="eyebrow">WELCOME BACK</small>
+      <h2 id="welcomeName">Your Home 👋</h2>
+    </div>
+  </div>
+
+  <!-- EMPTY STATE: no project yet -->
+  <div class="empty-state hidden" id="emptyState" style="padding:80px 20px;">
+    <div class="icon">🏗️</div>
+    <h4>You haven't started a project yet</h4>
+    <p>Head back to the homepage to customize a home and create your project.</p>
+    <br>
+    <a class="btn btn-primary" href="index.html#customizer">Build Your Home →</a>
+  </div>
+
+  <div id="dashContent" class="hidden">
+
+    <div class="stats">
+      <div class="stat-card"><span>PROJECT PROGRESS</span><strong class="accent" id="statProgress">0%</strong></div>
+      <div class="stat-card"><span>COMPLETED STAGES</span><strong id="statCompletedStages">—</strong></div>
+      <div class="stat-card"><span>ESTIMATED HANDOVER</span><strong id="statHandover" style="font-size:22px;">—</strong></div>
+      <div class="stat-card"><span>CHANGE REQUESTS</span><strong id="changeCount">0</strong></div>
+    </div>
+
+    <div class="dash-grid">
+
+      <div>
+        <!-- PROGRESS -->
+        <div class="panel">
+          <div class="progress-top">
+            <div>
+              <h3 id="projectTitle">Villa</h3>
+              <p class="sub" id="projectSub">—</p>
+            </div>
+            <div class="progress-number" id="customerProgress">0%</div>
+          </div>
+
+          <div class="progress-track">
+            <div class="site-line"></div>
+            <div class="progress-fill" id="progressFill" style="width:0%"><span>0%</span></div>
+          </div>
+
+          <div class="timeline" id="timeline"></div>
+        </div>
+
+        <!-- UPDATES -->
+        <div class="panel">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+            <h3>Latest Construction Updates</h3>
+            <span class="status ongoing">LIVE UPDATES</span>
+          </div>
+          <div id="updatesContainer"></div>
+        </div>
+      </div>
+
+      <!-- RIGHT SIDE -->
+      <div>
+        <div class="panel delivery">
+          <span class="eyebrow">ESTIMATED HANDOVER</span>
+          <div class="delivery-date" id="deliveryDate">—</div>
+          <p>Your home is progressing as planned.</p>
+          <div class="site-line dark"></div>
+        </div>
+
+        <div class="panel">
+          <h3>Quick Actions</h3>
+          <button class="btn btn-primary btn-block mt-16" onclick="openChangeModal()">✏ Request a Change</button>
+          <button class="btn btn-soft btn-block mt-8" onclick="document.getElementById('photoInput').click()">📷 Add Photo</button>
+          <input type="file" id="photoInput" accept="image/*" class="hidden" onchange="customerPhoto(this)">
+        </div>
+
+        <div class="panel">
+          <h3>My Change Requests</h3>
+          <div id="myRequests"></div>
+        </div>
+
+        <div class="panel">
+          <h3>Construction Team</h3>
+          <div class="timeline" id="customerTeam"></div>
+        </div>
+
+        <div class="panel">
+          <h3>Project Information</h3>
+          <p style="color:#737d76;line-height:2;font-size:14px;" id="infoBlock">—</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ================= CHANGE MODAL ================= -->
+<div class="modal" id="changeModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div>
+        <h2>Request a Change</h2>
+        <p style="color:var(--ink-45);margin-top:5px;font-size:14px;">Tell our team what you want to modify.</p>
+      </div>
+      <button class="close" onclick="closeModal('changeModal')">×</button>
+    </div>
+
+    <div class="form-group">
+      <label>Change Category</label>
+      <select id="changeCategory">
+        <option>Electrical</option>
+        <option>Interior</option>
+        <option>Painting</option>
+        <option>Furniture</option>
+        <option>Kitchen</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Describe Your Change</label>
+      <textarea id="changeDescription" placeholder="Example: Add two electrical sockets near the bed..."></textarea>
+    </div>
+
+    <button class="btn btn-primary btn-block" id="submitChangeBtn" onclick="submitChange()">Submit Change Request</button>
+  </div>
+</div>
+
+<!-- ================= TOAST ================= -->
+<div class="toast" id="toast"><span class="dot"></span> <span id="toastText">Update successful</span></div>
+
+<script type="module" src="js/customer.js"></script>
+</body>
+</html>
